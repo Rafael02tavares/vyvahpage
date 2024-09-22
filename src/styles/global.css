@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'normalize.css';
 @font-face {
     font-family: 'Dancing Script';
     src: url('/public/fonts/DancingScript-Regular.ttf') format('ttf'),
