@@ -1,0 +1,55 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Cabecalho from "../components/cabecalho.astro"
+import { createUser } from '../services/graphql';
+
+let formData = {
+  name: '',
+  email: '',
+  phone: '',
+  password: '',
+  adm: 'N'
+};
+
+const handleInputChange = (event) => {
+  const { name, value } = event.target;
+  formData = { ...formData, [name]: value };
+};
+
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  const { name, email, phone, password, adm } = formData;
+
+  try {
+    const newUser = await createUser(name, email, phone, password, adm);
+    console.log('User created successfully:', newUser);
+    // Optionally reset form data or show a success message
+  } catch (error) {
+    console.error('Error creating user:', error);
+    // Optionally show an error message
+  }
+};
+---
+
+<Layout title="Cadasto">
+    <main>
+        <Cabecalho />
+        <div class=" ml-20">
+            <form action="">
+                <label class="rounded-lg " for="">Nome:</label><br>
+                <input class="rounded-lg " type="text"><br>
+                <label class="rounded-lg " for="">Senha</label><br>
+                <input class="rounded-lg " type="password" name="" id=""><br>
+                <label class="rounded-lg " for="">confirme a senha</label><br>
+                <input class="rounded-lg " type="password"><br>
+                <label class="rounded-lg " for="Email">Email:</label><br>
+                <input class="rounded-lg " type="email" name="" id=""><br>
+                <label class="rounded-lg " for="">telefone:</label><br>
+                <input class="rounded-lg " type="tel" name="" id=""><br>
+                <button type="submit" class=" bg-orange-600 p-2 rounded-lg mt-5">Confirmar</button>
+
+
+            </form>
+        </div>
+    </main>
+</Layout>
