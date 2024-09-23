@@ -2,33 +2,6 @@
 import Layout from "../layouts/Layout.astro"
 import Cabecalho from "../components/cabecalho.astro"
 import { createUser } from '../services/graphql';
-
-let formData = {
-  name: '',
-  email: '',
-  phone: '',
-  password: '',
-  adm: 'N'
-};
-
-const handleInputChange = (event) => {
-  const { name, value } = event.target;
-  formData = { ...formData, [name]: value };
-};
-
-const handleSubmit = async (event) => {
-  event.preventDefault();
-  const { name, email, phone, password, adm } = formData;
-
-  try {
-    const newUser = await createUser(name, email, phone, password, adm);
-    console.log('User created successfully:', newUser);
-    // Optionally reset form data or show a success message
-  } catch (error) {
-    console.error('Error creating user:', error);
-    // Optionally show an error message
-  }
-};
 ---
 
 <Layout title="Cadasto">
